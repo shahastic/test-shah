@@ -2,7 +2,7 @@
 
 //connecting to db
 $servername = "localhost";
-$email = "root";
+$email = "email";
 $password = "";
 $database = "test";
 
@@ -11,8 +11,5 @@ $conn = mysqli_connect($servername , $email , $password  , $database );
 
 //die if not connected
 if(!$conn){
-  //  echo "Connection successful";
-//}
-//else{
     die("Failed due to " . mysqli_connect_error());
 }

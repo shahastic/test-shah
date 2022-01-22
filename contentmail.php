@@ -1,13 +1,16 @@
 <?php
 session_start();
 ?>
+
 <?php
     
 	$email = $_SESSION['email'];
 	$random = rand(0, 1000);
 	$api_url = 'http://xkcd.com/' . $random . '/info.0.json';
+
 	// The file_get_contents() reads a file into a string.
 	$json_data = file_get_contents($api_url);
+	
 	// The json_decode() function is used to decode or convert a JSON object to a PHP object.
 	$response_data = json_decode($json_data);
 	$to = "$email";
@@ -33,12 +36,14 @@ session_start();
 			$output[] = '';
 			$output[] = $message;
 			$output[] = '';
+		
 		foreach ($attachments as $attachment) {
 			$output[] = '--' . $boundary;
 			$output[] = 'Content-Type: ' . $attachment['type'] . '; name="' . $attachment['name'] . '";';
 			if (isset( $attachment['encoding'] )) {
 				$output[] = 'Content-Transfer-Encoding: ' . $attachment['encoding'];
 			}
+			
 			$output[] = 'Content-Disposition: attachment;';
 			$output[] = '';
 			$output[] = $attachment['data'];
@@ -80,10 +85,10 @@ session_start();
 			<h3>' . $comic['safe_title'] . "</h3>
 			<img src='" . $comic['img'] . "' alt='some comic hehe'/>
 			<br />
-			To read the comic,  --> <a target='_blank' href='https://xkcd.com/" . $comic['num'] . "'>Click here</a><br /> 
-			To Unsubscribe the Xkcd,  --> <a target='_blank' href='".$urlun."'>Click here</a><br /> 
+			To enjoy the comic: <a target='_blank' href='https://xkcd.com/" . $comic['num'] . "'>Read</a><br /> 
+			To Unsubscribe the XKCD: <a target='_blank' href='unsubscribe.php".$urlun."'>Unsubscribe</a><br /> 
 			";
 			sendComic( $email, $title, $Body, $attachments );
-			header("Location: success.php");
+			header("Location: welcome.php");
 			
 ?>
