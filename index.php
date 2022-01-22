@@ -59,7 +59,7 @@ require 'vendor/autoload.php';
     if (window.history.replaceState) {
       window.history.replaceState(null, null, window.location.href);
     }
-
+    </script>
 </body >
 </html >
 
@@ -83,29 +83,18 @@ $result = mysqli_query($conn , $existSql);
 $numExistRows = mysqli_num_rows($result);
 if($numExistRows > 0){
   //exists =true;
-  $showError = "Email already exists!";
+  header("Location: error.php");
 }
 else {
   //exists = false;
     $sql = "INSERT INTO `test` (`email`, `token`, `tstamp`, `active`) VALUES ('$email', '$token', current_timestamp(), '0')";
     $result = mysqli_query($conn , $sql);
     if($result){
-      $showAlert = true;
+     
 
-      // // $to_email = "shahr6485@gmail.com";
-      // $subject = "Email Activation";
-      // $body = "Please verify your email to successfully subscribe to the XKCD comics! Click here to <a href='http://localhost/XKCD_challenge/welcome.php?token=$token' class='link'>verify</a> ";
-      // $header = "From: Rahul Kumar <php.send.mail.xkcd@gmail.com>";
-
-      // if(mail($email , $subject , $body , $header)){
-      //   $_SESSION['msg'] = "Check your email to activate account $email";
-      //   //header
-      // }
-      // else{
-      //   //echo "Email not sent, please try again!";
-
+      
       $phpmailer = new PHPMailer(true);
-      try {
+      
          
         $_SESSION['tokensession'] = $token;
         $_SESSION['email'] = $email;
@@ -116,7 +105,7 @@ else {
           $phpmailer->Host = "smtp.gmail.com";
           $phpmailer->Port = "587";
           $phpmailer->Username = "phpmailassign@gmail.com";
-          $phpmailer->Password = "guru6484";
+          $phpmailer->Password = "guru6485";
           $phpmailer->setFrom("phpmailassign@gmail.com");
           $phpmailer->addAddress($email);
           $phpmailer->isHTML(true);
@@ -128,12 +117,8 @@ else {
           } else {
             header("Location: error.php");
           }
-      } catch (Exception $e) {
-        header("Location: error.php");
-      }
-  } else {
-    header("Location: error.php");
-  }
+      
+  } 
 
       }
     }

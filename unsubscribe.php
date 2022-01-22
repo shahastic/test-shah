@@ -37,11 +37,7 @@
     </div>
   </section>
 
-  <!-- To avoid refilling the form -->
-  <script>
-    if (window.history.replaceState) {
-      window.history.replaceState(null, null, window.location.href);
-    }
+  
 
 </body >
 </html >
