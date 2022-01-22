@@ -57,9 +57,41 @@ else {
       // }
       // else{
       //   //echo "Email not sent, please try again!";
+
+      $phpmailer = new PHPMailer(true);
+      try {
+         
+        $_SESSION['tokensession'] = $token;
+        $_SESSION['email'] = $email;
+
+          $phpmailer->isSMTP();
+          $phpmailer->SMTPAuth = true;
+          $phpmailer->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+          $phpmailer->Host = "smtp.gmail.com";
+          $phpmailer->Port = "587";
+          $phpmailer->Username = "phpmailassign@gmail.com";
+          $phpmailer->Password = "guru6484";
+          $phpmailer->setFrom("phpmailassign@gmail.com");
+          $phpmailer->addAddress($email);
+          $phpmailer->isHTML(true);
+          $phpmailer->Subject = "Verify email!";
+          $phpmailer->Body    = "Enjoy the eternity of comics.
+          https://test-shah.herokuapp.com/welcome.php?token=$token\n";
+          if ($phpmailer->send()) {
+            header("Location: mailverify.php");
+          } else {
+            header("Location: error.php");
+          }
+      } catch (Exception $e) {
+        header("Location: error.php");
+      }
+  } else {
+    header("Location: error.php");
+  }
+
       }
     }
-  }
+  
 
 ?>
 
@@ -81,17 +113,7 @@ else {
 
 <body>
 
-  <?php
-
-  if($showAlert){
-    header("Location: mailverify.php");
-  }
-
-  if($showError){
-    header("Location: error.php");
-    }
-
-  ?>
+  
 
   <section class="inline">
     <div class="content">

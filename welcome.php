@@ -1,11 +1,16 @@
 <?php
+
+session_start();
+
 include '_dbcon.php';
 
 if(isset($_GET['token'])){
 
-    $token = $_GET['token'];
+    $_SESSION['token'] = $token;
 
-    $update = "update test set action='1' where token='$token' ";
+    $tokensession = $_SESSION['token'];
+
+    $update = "update test set action='1' where token='$tokensession' ";
 
     $query = mysqli_query($conn , $update);
 
