@@ -1,7 +1,7 @@
 
 <?php
 session_start();
-// include '_dbcon.php';
+include '_dbcon.php';
 require("vendor/autoload.php");
 require_once("mailer/PHPMailer.php");
 require_once("mailer/SMTP.php");
@@ -12,13 +12,65 @@ use PHPMailer\PHPMailer\PHPMailer;
 require 'vendor/autoload.php';
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Required meta tags -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- CSS File -->
+  <link rel="stylesheet" href="style.css">
+  <title>Comics</title>
+</head>
+
+<body>
+
+  
+
+  <section class="inline">
+    <div class="content">
+      <header>
+        <h1>Enjoy Comics!</h1>
+      </header>
+      <section>
+        <p>
+          Subscribe to our newsletter!
+        </p>
+      </section>
+      <footer>
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+          <input required type="email" id="email" name="email" placeholder="Enter your email">
+          <button type="submit" name="submit">Subscribe</button>
+        </form>
+
+
+
+
+      </footer>
+    </div>
+  </section>
+
+  <!-- To avoid refilling the form -->
+  <script>
+    if (window.history.replaceState) {
+      window.history.replaceState(null, null, window.location.href);
+    }
+
+</body >
+</html >
+
+
 <?php
 
 
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-require "_dbcon.php";
+// require "_dbcon.php";
 
 //Generate a random string.
 $token = bin2hex(random_bytes(16));
@@ -90,53 +142,3 @@ else {
 ?>
 
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-  <!-- Required meta tags -->
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- CSS File -->
-  <link rel="stylesheet" href="style.css">
-  <title>Comics</title>
-</head>
-
-<body>
-
-  
-
-  <section class="inline">
-    <div class="content">
-      <header>
-        <h1>Enjoy Comics!</h1>
-      </header>
-      <section>
-        <p>
-          Subscribe to our newsletter!
-        </p>
-      </section>
-      <footer>
-        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-          <input required type="email" id="email" name="email" placeholder="Enter your email">
-          <button type="submit" name="submit">Subscribe</button>
-        </form>
-
-
-
-
-      </footer>
-    </div>
-  </section>
-
-  <!-- To avoid refilling the form -->
-  <script>
-    if (window.history.replaceState) {
-      window.history.replaceState(null, null, window.location.href);
-    }
-
-</body >
-</html >
