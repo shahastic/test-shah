@@ -1,7 +1,7 @@
 
 <?php
 session_start();
-include '_dbConnect.php';
+include '_dbcon.php';
 require("vendor/autoload.php");
 require_once("mailer/PHPMailer.php");
 require_once("mailer/SMTP.php");
