@@ -27,15 +27,15 @@ use PHPMailer\PHPMailer\PHPMailer;
 	$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 	$mail->Host = "smtp.gmail.com";
 	$mail->Port = "587";
-	$mail->Username = "testmailassignmentphp@gmail.com";
-	$mail->Password = "Hritik@123!!";
-	$mail->setFrom("testmailassignmentphp@gmail.com");
+	$mail->Username = "phpmailassign@gmail.com";
+	$mail->Password = "guru6485";
+	$mail->setFrom("phpmailassign@gmail.com");
 	$mail->addAddress($email);
 	$mail->isHTML(true);
-	$mail->Subject = "New data Arrived...";
+	$mail->Subject = "Collection renewed.";
 	$mail->Body = '
-  	          <p>Hello XKCDian</p>
-  	          Here is your new data.
+  	          <p>Hola amigos,</p>
+  	          here is your collection.
   	          <h3>' . $data->safe_title . "</h3>
   	          <img src='" . $data->img . "' alt='some data hehe'/>
 			<br />
@@ -43,17 +43,8 @@ use PHPMailer\PHPMailer\PHPMailer;
 			To Unsubscribe the Xkcd,  --> <a target='_blank' href='" . $unsubscribe_url . "'>Click here</a><br />";
 	$mail->addStringAttachment(file_get_contents($img), "$subject.jpg");
 	if ($mail->send()) {
-		header("Location: success.php");
+		header("Location: done.php");
 	} else {
-		echo '<div class="container2">
-        <div class="brand-title" style="color: red;">Error!!!</div>
-        <br> <br> <br>
-        <p>You have not subscribed to XKCD!!!</p>
-        <br> <br> <br>
-        <div class="inputs">
-            <button type="submit" class="btn btn-primary"><a style="color: white; text-decoration: none;" href='.$initial_page.'>Subscribe</a></button>
-        </div>
-    </div>';
+		header("Location: error.php");
 	}
-	
 	?>
