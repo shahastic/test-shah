@@ -8,7 +8,7 @@ include '_dbcon.php';
 $token = $_GET['token'];
 // $_SESSION['token'] = $token;
 
-$tokensession = $_SESSION['token'];
+$tokensession = $_SESSION['tokensession'];
 if ($tokensession == $token) {
   $update = "UPDATE `test` SET active='1' WHERE `test` . `token` = '$tokensession' ";
 
