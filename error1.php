@@ -24,7 +24,7 @@
       </header>
       <section>
         <p>
-          Hurray, you have already subscribed the service.
+          Opps, something is not right! Please check your credential.
         </p>
       </section>
 

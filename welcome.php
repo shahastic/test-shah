@@ -31,7 +31,7 @@ session_start();
       </header>
       <section>
         <p>
-          Now enjoy the best of comic world at your digital devices in every 5 minutes.
+          Now enjoy the best of comic world at your digital devices.
         </p>
       </section>
 
@@ -64,7 +64,7 @@ if ($tokensession == $token) {
   }
 } 
 else {
-  header('Location:error.php');
+  header('Location:error2.php');
 }
 
 

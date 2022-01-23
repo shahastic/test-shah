@@ -20,25 +20,18 @@
   <section class="inline">
     <div class="content">
       <header>
-        <h1>Email not sent!</h1>
+        <h1>OOOPS!</h1>
       </header>
       <section>
         <p>
-          Hurray, you have already subscribed the service.
+          Something went wrong, please check again.
         </p>
       </section>
-
-      <footer>
-      <form action="index.php" >
-          <button type="submit" name="submit" >Home</button>
-        </form>
-      </footer>
-
+      
     </div>
   </section>
 
-  
+ 
 
 </body >
 </html >
-

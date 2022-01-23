@@ -90,9 +90,7 @@ else {
     $sql = "INSERT INTO `test` (`email`, `token`, `tstamp`, `active`) VALUES ('$email', '$token', current_timestamp(), '0')";
     $result = mysqli_query($conn , $sql);
     if($result){
-     
 
-      
       $phpmailer = new PHPMailer(true);
       
          
@@ -104,9 +102,9 @@ else {
           $phpmailer->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
           $phpmailer->Host = "smtp.gmail.com";
           $phpmailer->Port = "587";
-          $phpmailer->Username = "phpmailassign@gmail.com";
-          $phpmailer->Password = "guru6485";
-          $phpmailer->setFrom("phpmailassign@gmail.com");
+          $phpmailer->Username = "php.sender.mail.xkcd@gmail.com";
+          $phpmailer->Password = "php@123$";
+          $phpmailer->setFrom("php.sender.mail.xkcd@gmail.com");
           $phpmailer->addAddress($email);
           $phpmailer->isHTML(true);
           $phpmailer->Subject = "Verify email!";
@@ -115,7 +113,7 @@ else {
           if ($phpmailer->send()) {
             header("Location: mailverify.php");
           } else {
-            header("Location: error.php");
+            header("Location: error1.php");
           }
       
   } 

@@ -20,7 +20,7 @@
   <section class="inline">
     <div class="content">
       <header>
-        <h1>Collection renewed!</h1>
+        <h1>Mail verified!</h1>
       </header>
       <section>
         <p>

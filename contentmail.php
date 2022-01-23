@@ -30,23 +30,23 @@ $mail->SMTPAuth = true;
 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 $mail->Host = "smtp.gmail.com";
 $mail->Port = "587";
-$mail->Username = "phpmailassign@gmail.com";
-$mail->Password = "guru6485";
-$mail->setFrom("phpmailassign@gmail.com");
+$mail->Username = "php.sender.mail.xkcd@gmail.com";
+$mail->Password = "php@123$";
+$mail->setFrom("php.sender.mail.xkcd@gmail.com");
 $mail->addAddress($email);
 $mail->isHTML(true);
 $mail->Subject = "Collection renewed.";
 $mail->Body = '
   	          <p>Hola amigos,</p>
-  	          here is your collection.
+  	          let the humor amaze you.
   	          <h3>' . $data->safe_title . "</h3>
   	          <img src='" . $data->img . "' alt='some data hehe'/>
 			<br />
-			To read the data,  --> <a target='_blank' href='https://xkcd.com/" . $data->num . "'>Click here</a><br /> 
-			To Unsubscribe the Xkcd,  --> <a target='_blank' href='" . $unsubscribe_url . "'>Click here</a><br />";
+			Enjoy the Comic : <a target='_blank' href='https://xkcd.com/" . $data->num . "'>Comic</a><br /> 
+			Unsubscribe the service : <a target='_blank' href='" . $unsubscribe_url . "'>Unsubscribe</a><br />";
 $mail->addStringAttachment(file_get_contents($img), "$subject.jpg");
 if ($mail->send()) {
 	header("Location: done.php");
 } else {
-	header("Location: error.php");
+	header("Location: error2.php");
 }
