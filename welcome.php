@@ -2,30 +2,8 @@
 
 session_start();
 
-include '_dbcon.php';
-
-
-$token = $_GET['token'];
-// $_SESSION['token'] = $token;
-
-$tokensession = $_SESSION['tokensession'];
-if ($tokensession == $token) {
-  $update = "UPDATE `test` SET active = '1' WHERE `test` . `token` = '$tokensession' ";
-
-  $query = mysqli_query($conn, $update);
-
-  if ($query) {
-    header('location:contentmail.php');
-  } else {
-
-    header('location:index.php');
-  }
-} else {
-  header('location:error.php');
-}
-
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -65,3 +43,29 @@ if ($tokensession == $token) {
 </body>
 
 </html>
+
+<?php
+
+include '_dbcon.php';
+
+$token = $_GET['token'];
+// $_SESSION['token'] = $token;
+
+$tokensession = $_SESSION['tokensession'];
+if ($tokensession == $token) {
+  $update = "UPDATE `test` SET active = '1' WHERE `test` . `token` = '$tokensession' ";
+
+  $query = mysqli_query($conn, $update);
+
+  if ($query) {
+    header('location:contentmail.php');
+  } else {
+    header('location:index.php');
+  }
+} 
+else {
+  header('location:error.php');
+}
+
+
+?>
