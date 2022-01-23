@@ -1,14 +1,17 @@
 <?php
 session_start();
+
+include '_dbcon.php';
+
 require("vendor/autoload.php");
 require_once("php-mailer/PHPMailer.php");
 require_once("php-mailer/SMTP.php");
 require_once("php-mailer/Exception.php");
 use PHPMailer\PHPMailer\PHPMailer;
 
-include '_dbcon.php';
+?>
 
-
+<?php
 
 $initial_page = "https://test-shah.herokuapp.com/index.php";
 $email = $_SESSION['email'];
