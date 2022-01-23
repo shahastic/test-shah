@@ -10,17 +10,14 @@ $token = $_GET['token'];
 
 $tokensession = $_SESSION['tokensession'];
 if ($tokensession == $token) {
-  $update = "UPDATE `test` SET active='1' WHERE `test` . `token` = '$tokensession' ";
+  $update = "UPDATE `test` SET active = '1' WHERE `test` . `token` = '$tokensession' ";
 
   $query = mysqli_query($conn, $update);
 
   if ($query) {
-    if (isset($_SESSION['msg'])) {
-      $_SESSION['msg'] = "Account verified successfully!";
-      header('location:contentmail.php');
-    }
+    header('location:contentmail.php');
   } else {
-    $_SESSION['msg'] = "Account not verified!";
+
     header('location:index.php');
   }
 } else {
