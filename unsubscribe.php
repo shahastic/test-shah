@@ -26,8 +26,7 @@
 <?php
 $email = $_SESSION['email'];
 $url_email = $_GET['email'];
-echo $email;
-echo $url_email;
+
 if ($email == $url_email) {
     // $initial_page = "https://test-shah.herokuapp.com/index.php";
     include '_dbcon.php';
