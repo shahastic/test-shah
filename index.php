@@ -42,7 +42,7 @@ require 'vendor/autoload.php';
         </p>
       </section>
       <footer>
-        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+        <form action="index.php" method="POST">
           <input required type="email" id="email" name="email" placeholder="Enter your email">
           <button type="submit" name="submit">Subscribe</button>
         </form>
