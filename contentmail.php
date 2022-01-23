@@ -4,9 +4,9 @@ session_start();
 include '_dbcon.php';
 
 require("vendor/autoload.php");
-require_once("php-mailer/PHPMailer.php");
-require_once("php-mailer/SMTP.php");
-require_once("php-mailer/Exception.php");
+require_once("mailer/PHPMailer.php");
+require_once("mailer/SMTP.php");
+require_once("mailer/Exception.php");
 use PHPMailer\PHPMailer\PHPMailer;
 
 ?>
