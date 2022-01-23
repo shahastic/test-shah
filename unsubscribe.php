@@ -31,15 +31,15 @@ echo $url_email;
 if ($email == $url_email) {
     // $initial_page = "https://test-shah.herokuapp.com/index.php";
     include '_dbcon.php';
-    echo "db con";
+    
     $sql = "UPDATE `test` SET `active` = '0' WHERE `test`.`email` = '$email'";
-  echo $sql;
+  
     $del_sql = "DELETE FROM `test` WHERE `test`.`email` = '$email'";
-    echo $del_sql;
+   
     $result = mysqli_query($conn, $sql);
-    echo $result;
+    
     $del_result = mysqli_query($conn, $del_sql);
-    echo $del_result;
+    
     session_unset();
     session_destroy();
     if ($result) {
