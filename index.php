@@ -103,7 +103,7 @@ else {
           $phpmailer->Host = "smtp.gmail.com";
           $phpmailer->Port = "587";
           $phpmailer->Username = "phpmailassign@gmail.com";
-          $phpmailer->Password = "php@123$";
+          $phpmailer->Password = "php@123#";
           $phpmailer->setFrom("phpmailassign@gmail.com");
           $phpmailer->addAddress($email);
           $phpmailer->isHTML(true);
