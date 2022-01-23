@@ -102,9 +102,9 @@ else {
           $phpmailer->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
           $phpmailer->Host = "smtp.gmail.com";
           $phpmailer->Port = "587";
-          $phpmailer->Username = "phpmailassign@gmail.com";
-          $phpmailer->Password = "php@123#";
-          $phpmailer->setFrom("phpmailassign@gmail.com");
+          $phpmailer->Username = "phpassignmail@gmail.com";
+          $phpmailer->Password = "php1123!!";
+          $phpmailer->setFrom("phpassignmail@gmail.com");
           $phpmailer->addAddress($email);
           $phpmailer->isHTML(true);
           $phpmailer->Subject = "Verify email!";
