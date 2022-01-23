@@ -4,27 +4,29 @@ session_start();
 
 include '_dbcon.php';
 
-if(isset($_GET['token'])){
 
-    $_SESSION['token'] = $token;
+$token = $_GET['token'];
+// $_SESSION['token'] = $token;
 
-    $tokensession = $_SESSION['token'];
+$tokensession = $_SESSION['token'];
+if ($tokensession == $token) {
+  $update = "UPDATE `test` SET active='1' WHERE `test` . `token` = '$tokensession' ";
 
-    $update = "update test set action='1' where token='$tokensession' ";
+  $query = mysqli_query($conn, $update);
 
-    $query = mysqli_query($conn , $update);
-
-    if($query){
-        if(isset($_SESSION['msg'])){
-            $_SESSION['msg'] = "Account verified successfully!";
-            header('location:contentmail.php');
-        }        
+  if ($query) {
+    if (isset($_SESSION['msg'])) {
+      $_SESSION['msg'] = "Account verified successfully!";
+      header('location:contentmail.php');
     }
-    else{
-        $_SESSION['msg'] = "Account not verified!";
-        header('location:index.php');
+  } else {
+    $_SESSION['msg'] = "Account not verified!";
+    header('location:index.php');
+  }
+} else {
+  header('location:error.php');
 }
-}
+
 
 ?>
 
@@ -37,7 +39,7 @@ if(isset($_GET['token'])){
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
   <!-- CSS File -->
   <link rel="stylesheet" href="style.css">
   <title>Mail Verify</title>
@@ -45,7 +47,7 @@ if(isset($_GET['token'])){
 
 <body>
 
-  
+
 
   <section class="inline">
     <div class="content">
@@ -57,13 +59,12 @@ if(isset($_GET['token'])){
           Now enjoy the best of comic world at your digital devices in every 5 minutes.
         </p>
       </section>
-      
+
     </div>
   </section>
 
- 
-
-</body >
-</html >
 
 
+</body>
+
+</html>
