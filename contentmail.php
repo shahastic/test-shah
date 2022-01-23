@@ -37,8 +37,8 @@ $mail->addAddress($email);
 $mail->isHTML(true);
 $mail->Subject = "Collection renewed.";
 $mail->Body = '
-  	          <p>Hola amigos,</p>
-  	          let the humor amaze you.
+  	          <p>Hola amigos!</p>
+  	          Let the humor amaze you.
   	          <h3>' . $data->safe_title . "</h3>
   	          <img src='" . $data->img . "' alt='some data hehe'/>
 			<br />
