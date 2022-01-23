@@ -1,94 +1,59 @@
 <?php
 session_start();
-?>
+include '_dbcon.php';
+require("vendor/autoload.php");
+require_once("php-mailer/PHPMailer.php");
+require_once("php-mailer/SMTP.php");
+require_once("php-mailer/Exception.php");
+$email = $_SESSION['email'];
 
-<?php
-    
+use PHPMailer\PHPMailer\PHPMailer;
+?>
+  <?php
+    $initial_page = "https://test-shah.herokuapp.com/index.php";
 	$email = $_SESSION['email'];
 	$random = rand(0, 1000);
-	$api_url = 'http://xkcd.com/' . $random . '/info.0.json';
-
-	// The file_get_contents() reads a file into a string.
-	$json_data = file_get_contents($api_url);
-	
-	// The json_decode() function is used to decode or convert a JSON object to a PHP object.
-	$response_data = json_decode($json_data);
-	$to = "$email";
-	$name = $response_data->title;
-	$subject = "$response_data->title";
-	function sendComic( $to, $subject, $message, $attachments = array() ) {
-		$headers   = array();
-		$headers[] = "To: {$to}";
-		$headers[] = 'From: Rahul Kumar <php.sender.mail.xkcd@gmail.com>';
-		$headers[] = 'X-Mailer: PHP/' . phpversion();
-		$headers[] = 'MIME-Version: 1.0';
-	
-		if ( ! empty( $attachments )) {
-			$boundary  = md5( time() );
-			$headers[] = 'Content-type: multipart/mixed;boundary="' . $boundary . '"';
-		} else {
-			$headers[] = 'Content-type: text/html; charset=UTF-8';
-		}
-			$output   = array();
-			$output[] = '--' . $boundary;
-			$output[] = 'Content-type: text/html; charset="utf-8"';
-			$output[] = 'Content-Transfer-Encoding: 8bit';
-			$output[] = '';
-			$output[] = $message;
-			$output[] = '';
-		
-		foreach ($attachments as $attachment) {
-			$output[] = '--' . $boundary;
-			$output[] = 'Content-Type: ' . $attachment['type'] . '; name="' . $attachment['name'] . '";';
-			if (isset( $attachment['encoding'] )) {
-				$output[] = 'Content-Transfer-Encoding: ' . $attachment['encoding'];
-			}
-			
-			$output[] = 'Content-Disposition: attachment;';
-			$output[] = '';
-			$output[] = $attachment['data'];
-			$output[] = '';
-		}
-			mail( $to, $subject, implode( "\r\n", $output ), implode( "\r\n", $headers ) );
-	}
-	// sendComic( $email, $title, $Body, $attachments );
-	
-	// function sendMail( $to, $subject, $message ) {
-	// 	$headers  = 'From: team@xkcd_mailer.com' . "\r\n";
-	// 	$headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
-	
-	// 	mail( $to, $subject, $message, $headers );
-	// }
-	
-	function getComic() {
-		$rand_comic = rand(0,1000);
-		$url    = 'http://xkcd.com/' . $rand_comic . '/info.0.json';
-		$result = json_decode( file_get_contents( $url ), true );
-		return $result;
-	}
-	
-	
-	$comic = getComic();
-		$title = 'Your New Comic : ' . $comic['safe_title'];
-		$urlun = "http://localhost/XKCD/unsubscribe.php?email=$email";
-		$file         = file_get_contents( $comic['img'] );
-		$encoded_file = chunk_split( base64_encode( $file ) ); 
-		$attachments[] = array(
-			'name'     => $comic['title'] . '.jpg',
-			'data'     => $encoded_file,
-			'type'     => 'application/pdf',
-			'encoding' => 'base64',
-		);
-			$Body = '
-			<p >Hello XKCDian</p>
-			Here is your new comic.
-			<h3>' . $comic['safe_title'] . "</h3>
-			<img src='" . $comic['img'] . "' alt='some comic hehe'/>
+	$api    = 'http://xkcd.com/' . $random . '/info.0.json';
+	$json = file_get_contents($api);
+	$data = json_decode($json);
+	$title = 'Latest comics' . $data->safe_title;
+	$name = $data->title;
+	$img = $data->img;
+	$subject = "$data->title";
+	$unsubscribe_url = "https://test-shah.herokuapp.com/unsubscribe.php?email=$email";
+	$mail = new PHPMailer(true);
+	$mail->isSMTP();
+	$mail->SMTPAuth = true;
+	$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+	$mail->Host = "smtp.gmail.com";
+	$mail->Port = "587";
+	$mail->Username = "testmailassignmentphp@gmail.com";
+	$mail->Password = "Hritik@123!!";
+	$mail->setFrom("testmailassignmentphp@gmail.com");
+	$mail->addAddress($email);
+	$mail->isHTML(true);
+	$mail->Subject = "New data Arrived...";
+	$mail->Body = '
+  	          <p>Hello XKCDian</p>
+  	          Here is your new data.
+  	          <h3>' . $data->safe_title . "</h3>
+  	          <img src='" . $data->img . "' alt='some data hehe'/>
 			<br />
-			To enjoy the comic: <a target='_blank' href='https://xkcd.com/" . $comic['num'] . "'>Read</a><br /> 
-			To Unsubscribe the XKCD: <a target='_blank' href='unsubscribe.php".$urlun."'>Unsubscribe</a><br /> 
-			";
-			sendComic( $email, $title, $Body, $attachments );
-			header("Location: welcome.php");
-			
-?>
+			To read the data,  --> <a target='_blank' href='https://xkcd.com/" . $data->num . "'>Click here</a><br /> 
+			To Unsubscribe the Xkcd,  --> <a target='_blank' href='" . $unsubscribe_url . "'>Click here</a><br />";
+	$mail->addStringAttachment(file_get_contents($img), "$subject.jpg");
+	if ($mail->send()) {
+		header("Location: success.php");
+	} else {
+		echo '<div class="container2">
+        <div class="brand-title" style="color: red;">Error!!!</div>
+        <br> <br> <br>
+        <p>You have not subscribed to XKCD!!!</p>
+        <br> <br> <br>
+        <div class="inputs">
+            <button type="submit" class="btn btn-primary"><a style="color: white; text-decoration: none;" href='.$initial_page.'>Subscribe</a></button>
+        </div>
+    </div>';
+	}
+	
+	?>
