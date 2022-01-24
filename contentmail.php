@@ -17,7 +17,7 @@ $s = "SELECT * FROM `test` WHERE active = '1' ";
 $run = mysqli_query($conn, $s);
 
 while($r = mysqli_fetch_assoc($run)){
-
+    $email = $r['email'];
 	$initial_page = "https://test-shah.herokuapp.com/index.php";
 	// $email = $_SESSION['email'];
 	$random = rand(0, 1000);
@@ -28,7 +28,7 @@ while($r = mysqli_fetch_assoc($run)){
 	$name = $data->title;
 	$img = $data->img;
 	$subject = "$data->title";
-	$unsubscribe_url = 'https://test-shah.herokuapp.com/unsubscribe.php?email='.$r['email'].'';
+	$unsubscribe_url = "https://test-shah.herokuapp.com/unsubscribe.php?email=$email";
 	$mail = new PHPMailer(true);
 	$mail->isSMTP();
 	$mail->SMTPAuth = true;
@@ -38,7 +38,7 @@ while($r = mysqli_fetch_assoc($run)){
 	$mail->Username = "phprtcamp@gmail.com";
 	$mail->Password = "php@123$";
 	$mail->setFrom("phprtcamp@gmail.com");
-	$mail->addAddress($r['email']);
+	$mail->addAddress($email);
 	$mail->isHTML(true);
 	$mail->Subject = "Collection renewed.";
 	$mail->Body = '
