@@ -58,13 +58,13 @@ if ($tokensession == $token) {
   $query = mysqli_query($conn, $update);
 
   if ($query) {
-    header('Location:contentmail.php');
+    header('Location: contentmail.php');
   } else {
-    header('Location:index.php');
+    header('Location: index.php');
   }
 } 
 else {
-  header('Location:error2.php');
+  header('Location: error2.php');
 }
 
 
