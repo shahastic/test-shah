@@ -50,9 +50,6 @@ while($r = mysqli_fetch_assoc($run)){
 				Enjoy the Comic : <a target='_blank' href='https://xkcd.com/" . $data->num . "'>Comic</a><br /> 
 				Unsubscribe the service : <a target='_blank' href='" . $unsubscribe_url . "'>Unsubscribe</a><br />";
 	$mail->addStringAttachment(file_get_contents($img), "$subject.jpg");
+	$mail->send();
 }
-if ($mail->send()) {
-	header("Location: done.php");
-} else {
-	header("Location: error2.php");
-}
+
