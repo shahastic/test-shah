@@ -28,9 +28,9 @@ if ($url_email && $url_token) {
     // $initial_page = "https://test-shah.herokuapp.com/index.php";
     include '_dbcon.php';
     
-    $sql = "UPDATE `test` SET `active` = '0' WHERE `test`.`email` = '$email' AND `test`.`token` = '$token'";
+    $sql = "UPDATE `test` SET `active` = '0' WHERE `test`.`email` = '$url_email' AND `test`.`token` = '$url_token'";
   
-    $del_sql = "DELETE FROM `test` WHERE `test`.`email` = '$email' AND `test`.`token` = '$token'";
+    $del_sql = "DELETE FROM `test` WHERE `test`.`email` = '$url_email' AND `test`.`token` = '$url_token'";
    
     $result = mysqli_query($conn, $sql);
     
