@@ -24,13 +24,13 @@
 $url_email = $_GET['email'];
 $url_token = $_GET['token'];
 
-if ($email == $url_email && $token == $url_token) {
+if ($url_email && $url_token) {
     // $initial_page = "https://test-shah.herokuapp.com/index.php";
     include '_dbcon.php';
     
-    $sql = "UPDATE `test` SET `active` = '0' WHERE `test`.`email` = '$email'";
+    $sql = "UPDATE `test` SET `active` = '0' WHERE `test`.`email` = '$email' AND `test`.`token` = '$token'";
   
-    $del_sql = "DELETE FROM `test` WHERE `test`.`email` = '$email'";
+    $del_sql = "DELETE FROM `test` WHERE `test`.`email` = '$email' AND `test`.`token` = '$token'";
    
     $result = mysqli_query($conn, $sql);
     

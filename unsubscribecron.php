@@ -26,21 +26,22 @@ session_start();
 <?php
 // $email = $_SESSION['email'];
 $url_email = $_GET['email'];
+$url_token = $_GET['token'];
 
-if ($url_email) {
+if ($url_email && $url_token) {
 // $initial_page = "https://test-shah.herokuapp.com/index.php";
 include '_dbcon.php';
 
-$sql = "UPDATE `test` SET `active` = '0' WHERE `test`.`email` = '$url_email'";
+$sql = "UPDATE `test` SET `active` = '0' WHERE `test`.`email` = '$url_email' AND `test`.`token` = '$url_token' ";
 
-$del_sql = "DELETE FROM `test` WHERE `test`.`email` = '$url_email'";
+$del_sql = "DELETE FROM `test` WHERE `test`.`email` = '$url_email' AND `test`.`token` = '$url_token'";
 
 $result = mysqli_query($conn, $sql);
 
 $del_result = mysqli_query($conn, $del_sql);
 
-session_unset();
-session_destroy();
+// session_unset();
+// session_destroy();
 if ($result) {
     echo '<section class="inline">
     <div class="content">

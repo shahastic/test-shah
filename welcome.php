@@ -49,8 +49,8 @@ $url_token = $_GET['token'];
 // $_SESSION['token'] = $token;
 
 // $tokensession = $_SESSION['tokensession'];
-if ($email == $url_email && $token == $url_token) {
-  $update = "UPDATE `test` SET active = '1' WHERE `test` . `token` = '$tokensession' ";
+if ($url_email && $url_token) {
+  $update = "UPDATE `test` SET active = '1' WHERE `test` . `email` = '$email' AND `test` . `token` = '$token'";
 
   $query = mysqli_query($conn, $update);
 

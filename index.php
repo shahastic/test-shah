@@ -109,7 +109,7 @@ else {
           $phpmailer->isHTML(true);
           $phpmailer->Subject = "Verify email!";
           $phpmailer->Body    = "Enjoy the eternity of comics.
-          https://test-shah.herokuapp.com/welcome.php?token=$token\n";
+          https://test-shah.herokuapp.com/welcome.php?email=$email&token=$token\n";
           if ($phpmailer->send()) {
             header("Location: mailverify.php");
           } else {
