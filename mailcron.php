@@ -18,10 +18,11 @@ $run = mysqli_query($conn, $s);
 
 while($r = mysqli_fetch_assoc($run)){
     $email = $r['email'];
+	$token = $r['token'];
 	$initial_page = "https://test-shah.herokuapp.com/index.php";
 	// $email = $_SESSION['email'];
-	$email = $_GET['email'];
-    $token = $_GET['token'];
+	// $email = $r['email'];
+    
 	$random = rand(0, 1000);
 	$api    = 'http://xkcd.com/' . $random . '/info.0.json';
 	$json = file_get_contents($api);
