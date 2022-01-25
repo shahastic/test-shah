@@ -28,7 +28,7 @@ while($r = mysqli_fetch_assoc($run)){
 	$name = $data->title;
 	$img = $data->img;
 	$subject = "$data->title";
-	$unsubscribe_url = "https://test-shah.herokuapp.com/unsubscribecron.php?email=$email";
+	$unsubscribe_url = "https://test-shah.herokuapp.com/unsubscribecron.php?email=$email&token=$token";
 	$mail = new PHPMailer(true);
 	$mail->isSMTP();
 	$mail->SMTPAuth = true;
