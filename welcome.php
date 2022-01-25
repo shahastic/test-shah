@@ -55,7 +55,7 @@ if ($url_email && $url_token) {
   $query = mysqli_query($conn, $update);
 
   if ($query) {
-    header('Location: contentmail.php?email=$url_mail&token=$url_token');
+    header('Location: contentmail.php?email=$url_email&token=$url_token');
   } else {
     header('Location: index.php');
   }

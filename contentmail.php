@@ -24,7 +24,7 @@ $title = 'Latest comics' . $data->safe_title;
 $name = $data->title;
 $img = $data->img;
 $subject = "$data->title";
-$unsubscribe_url = "https://test-shah.herokuapp.com/unsubscribe.php?email=$email&token=$url_token";
+$unsubscribe_url = "https://test-shah.herokuapp.com/unsubscribe.php?email=$email&token=$token";
 $mail = new PHPMailer(true);
 $mail->isSMTP();
 $mail->SMTPAuth = true;
