@@ -1,15 +1,11 @@
 
-<?php
 
-    session_start();
-
-?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
+  <!-- sessionstart top -->
   <!-- Required meta tags -->
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,10 +20,11 @@
 </html >
 
 <?php
-$email = $_SESSION['email'];
+// $email = $_SESSION['email'];
 $url_email = $_GET['email'];
+$url_token = $_GET['token'];
 
-if ($email == $url_email) {
+if ($email == $url_email && $token == $url_token) {
     // $initial_page = "https://test-shah.herokuapp.com/index.php";
     include '_dbcon.php';
     
@@ -39,8 +36,8 @@ if ($email == $url_email) {
     
     $del_result = mysqli_query($conn, $del_sql);
     
-    session_unset();
-    session_destroy();
+    // session_unset();
+    // session_destroy();
     if ($result) {
         echo '<section class="inline">
         <div class="content">

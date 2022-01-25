@@ -1,6 +1,6 @@
 
 <?php
-session_start();
+// session_start();
 include '_dbcon.php';
 require("vendor/autoload.php");
 require_once("mailer/PHPMailer.php");
@@ -94,8 +94,8 @@ else {
       $phpmailer = new PHPMailer(true);
       
          
-        $_SESSION['tokensession'] = $token;
-        $_SESSION['email'] = $email;
+        // $_SESSION['tokensession'] = $token;
+        // $_SESSION['email'] = $email;
 
           $phpmailer->isSMTP();
           $phpmailer->SMTPAuth = true;

@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 
 include '_dbcon.php';
 
@@ -14,7 +14,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 <?php
 
 $initial_page = "https://test-shah.herokuapp.com/index.php";
-$email = $_SESSION['email'];
+// $email = $_SESSION['email'];
 $random = rand(0, 1000);
 $api    = 'http://xkcd.com/' . $random . '/info.0.json';
 $json = file_get_contents($api);

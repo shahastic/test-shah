@@ -1,13 +1,9 @@
-<?php
 
-session_start();
-
-?>
 
 
 <!DOCTYPE html>
 <html lang="en">
-
+<!-- sessionstart top -->
 <head>
 
   <!-- Required meta tags -->
@@ -48,11 +44,12 @@ session_start();
 
 include '_dbcon.php';
 
-$token = $_GET['token'];
+$url_email = $_GET['email'];
+$url_token = $_GET['token'];
 // $_SESSION['token'] = $token;
 
-$tokensession = $_SESSION['tokensession'];
-if ($tokensession == $token) {
+// $tokensession = $_SESSION['tokensession'];
+if ($email == $url_email && $token == $url_token) {
   $update = "UPDATE `test` SET active = '1' WHERE `test` . `token` = '$tokensession' ";
 
   $query = mysqli_query($conn, $update);
