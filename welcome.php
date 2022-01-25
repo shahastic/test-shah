@@ -50,12 +50,12 @@ $url_token = $_GET['token'];
 
 // $tokensession = $_SESSION['tokensession'];
 if ($url_email && $url_token) {
-  $update = "UPDATE `test` SET active = '1' WHERE `test` . `email` = '$email' AND `test` . `token` = '$token'";
+  $update = "UPDATE `test` SET active = '1' WHERE `test` . `email` = '$url_email' AND `test` . `token` = '$url_token'";
 
   $query = mysqli_query($conn, $update);
 
   if ($query) {
-    header('Location: contentmail.php?email=$url_email&token=$url_token');
+    header("Location: contentmail.php?email=$url_email&token=$url_token");
   } else {
     header('Location: index.php');
   }
